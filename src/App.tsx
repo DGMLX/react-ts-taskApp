@@ -1,19 +1,17 @@
-import { useEffect, useState } from "react"
 import TodoForm from "./components/TodoForm"
 import TodoList from "./components/TodoList"
-import { Tarea } from "./interface/todo.interfaces"
+import { TodoProvider } from "./context/TodoProvider"
+import { useContext} from "react"
+import { TodoContext } from "./context/TodoContext"
 
 interface Props {
   title:string
 }
 
 
-const App = ({title}:Props) =>{  
-  const [tareas,setTareas] = useState<Tarea[]>([]);
-  const [editMode,setEditMode] = useState<boolean>(false);
-  const [tareaEdit,setTareaEdit] = useState<Tarea>();
+const App = ({title}:Props) =>{   
 
-
+  const {tareas} = useContext(TodoContext)
 
   return(
     <>
@@ -26,10 +24,10 @@ const App = ({title}:Props) =>{
       </div>
       <div className="flex justify-around">
         <div>
-          <TodoForm tareas={tareas} setTareas={setTareas} editMode={editMode} tareaEdit={tareaEdit} setEditMode={setEditMode}/>
+          <TodoForm/>
         </div>
         <div>
-          <TodoList tareas={tareas} setTareas={setTareas} setEditMode={setEditMode} setTareaEdit={setTareaEdit}/>
+          <TodoList/>
         </div>
       </div>
     </>

@@ -1,16 +1,15 @@
 import Swal from "sweetalert2"
 import { Tarea } from "../interface/todo.interfaces"
+import { TodoContext } from "../context/TodoContext"
+import { useContext } from "react"
 
 interface Props {
-    setTareas:React.Dispatch<React.SetStateAction<Tarea[]>>
     tarea:Tarea
-    setEditMode:React.Dispatch<React.SetStateAction<boolean>>
-    setTareaEdit:React.Dispatch<React.SetStateAction<Tarea | undefined>>
-    tareas:Tarea[]
 }
 
-const Todo = ({setTareas,tarea,setEditMode,setTareaEdit,tareas}:Props) =>{
+const Todo = ({tarea}:Props) =>{
 
+    const {setTareaEdit,tareas,setTareas,setEditMode} = useContext(TodoContext)
     
 
     const eliminarTarea = (id : number) =>{

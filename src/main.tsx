@@ -2,9 +2,12 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.tsx'
 import './index.css'
+import { TodoProvider } from './context/TodoProvider.tsx'
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <App title={"Aplicacion CRUD de tareas con TS"}/>
+    <TodoProvider>
+      <App title={"Aplicacion CRUD de tareas con TS"}/>
+    </TodoProvider>
   </React.StrictMode>,
 )

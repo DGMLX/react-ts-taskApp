@@ -1,20 +1,18 @@
-import { Tarea } from "../interface/todo.interfaces"
+import { useContext } from "react"
+import { TodoContext } from "../context/TodoContext"
+
 import Todo from "./Todo"
 
-interface Props {
-    setTareas:React.Dispatch<React.SetStateAction<Tarea[]>>
-    tareas:Tarea[]
-    setEditMode:React.Dispatch<React.SetStateAction<boolean>>
-    setTareaEdit:React.Dispatch<React.SetStateAction<Tarea | undefined>>
-}
+const TodoList = () =>{
 
-const TodoList = ({tareas,setTareas,setEditMode,setTareaEdit}:Props) =>{
+    const {tareas} = useContext(TodoContext)
+
     return(
         <>
             <h1 className="text-center text-xl font-medium mb-5">Lista de tareas</h1>
             <div className="flex flex-wrap justify-center">
                 {tareas.map(tarea=>(
-                    <Todo key={tarea.id} tarea={tarea} tareas={tareas} setTareas={setTareas} setEditMode={setEditMode} setTareaEdit={setTareaEdit}/>
+                    <Todo key={tarea.id} tarea={tarea}/>
                 ))}
             </div>
         </>

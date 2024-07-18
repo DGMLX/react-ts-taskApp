@@ -1,14 +1,6 @@
-import { ChangeEvent, MouseEvent, useEffect, useState } from "react"
-import { Tarea } from "../interface/todo.interfaces"    
+import { ChangeEvent, MouseEvent, useContext, useEffect, useState } from "react"  
 import Swal from "sweetalert2"
-
-interface Props {
-    setTareas:React.Dispatch<React.SetStateAction<Tarea[]>>
-    editMode:boolean
-    tareaEdit:Tarea | undefined
-    tareas:Tarea[]
-    setEditMode:React.Dispatch<React.SetStateAction<boolean>>
-}
+import { TodoContext } from "../context/TodoContext"
 
 interface DataForm {
     titulo?:string
@@ -17,10 +9,10 @@ interface DataForm {
     id:number
 }
 
-const TodoForm = ({setTareas,editMode,tareaEdit,tareas,setEditMode}:Props) =>{
+const TodoForm = () =>{
 
     const [dataForm,setDataForm] = useState<DataForm>();
-
+    const {editMode,tareaEdit,tareas,setTareas,setEditMode} = useContext(TodoContext)
 
     const handleChange = ({target}:ChangeEvent<HTMLInputElement>) =>{
         const {name,value} = target
@@ -54,7 +46,7 @@ const TodoForm = ({setTareas,editMode,tareaEdit,tareas,setEditMode}:Props) =>{
                 id:tareaEdit.id
             })
             if(dataForm?.titulo  && dataForm?.descripcion){
-                const actualizarTarea =  tareas.map(t=>{
+                const actualizarTarea=  tareas.map(t=>{
                     if(t.id == tareaEdit?.id){
                         return {
                             titulo:dataForm?.titulo,
