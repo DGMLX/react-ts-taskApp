@@ -1,6 +1,5 @@
 import TodoForm from "./components/TodoForm"
 import TodoList from "./components/TodoList"
-import { TodoProvider } from "./context/TodoProvider"
 import { useContext} from "react"
 import { TodoContext } from "./context/TodoContext"
 
